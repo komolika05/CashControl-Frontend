@@ -1,38 +1,109 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  font-family: 'Arial', sans-serif;
+  position: relative;
+  height: 100vh
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: rgb(14, 159, 159);
+  margin-top: 6%;
+  margin-left: 5%;
+  margin-bottom: 60px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.form {
+  margin-left: 10%;
+  position: relative;
+  z-index: 1; 
+}
+
+.intro {
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-self: center;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: var(--space-lg);
+  position: absolute;
+  z-index: 2;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+input {
+  width: 200px;
+  padding: 8px;
+  margin-left: 20px;
+  margin-bottom: 16px;
+}
+
+button {
+  margin-bottom: 40px;
+  padding: 8px 15px;
+  font-size: 18px;
+  cursor: pointer;
+  background-color: rgb(3, 160, 160);
   color: white;
+  font-weight: 200;
+  border-radius: 45px;
 }
 
-.App-link {
-  color: #61dafb;
+button :hover{
+background-color: bisque;
+color: black;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.message {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #1a6f79;
+}
+
+button {
+  margin-right: 10px; 
+}
+
+.resend-btn {
+  margin-left: 10px; 
+}
+
+.cash-control-icon {
+  width: 200px;
+  margin-top: 50px;
+  margin-left: 9%;
+  margin-bottom: 40px;
+}
+
+.wave-image {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.illustration {
+  height: 400px;
+  margin-right: 8%;
 }
