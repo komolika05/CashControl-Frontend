@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../App.css";
+import "./login.scss";
+import OtpInput from "./OtpInput";
 
 function Login() {
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [otp, setOtp] = useState("");
-  const [message, setMessage] = useState("");
   const [otpSent, setOtpSent] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handleLoginSubmit = async () => {
     try {
@@ -29,81 +29,33 @@ function Login() {
     }
   };
 
-  const handleVerifySubmit = async () => {
-    try {
-      const response = await axios.post(
-        "http://localhost:3001/users/login/otp/verify",
-        {
-          phoneNumber,
-          otp,
-        }
-      );
-
-      if (response.data.success) {
-        setMessage("OTP verification successful. You are now logged in!");
-      } else {
-        setMessage("Invalid OTP. Please try again.");
-      }
-    } catch (error) {
-      console.error("Error verifying OTP:", error);
-      setMessage("Error verifying OTP. Please try again later.");
-    }
-  };
-
-  const handleResendOtp = async () => {
-    try {
-      const response = await axios.post(
-        "http://localhost:3001/users/login/otp/send",
-        {
-          phoneNumber,
-        }
-      );
-
-      if (response.data.success) {
-        setMessage("OTP resent successfully. Check your phone.");
-      } else {
-        setMessage("Failed to resend OTP. Please try again.");
-      }
-    } catch (error) {
-      console.error("Error resending OTP:", error);
-      setMessage("Error resending OTP. Please try again later.");
-    }
-  };
-
   return (
     <div className="form">
       <h1>Login / Signup</h1>
 
       {!otpSent ? (
-        <label>
-          Phone Number:
+        <div className="form__group field">
           <input
             type="tel"
+            className="form__field"
+            placeholder="Enter your phone number"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
-            placeholder="Enter your phone number"
+            name="phoneNumber"
+            id="phoneNumber"
             required
           />
-        </label>
-      ) : (
-        <>
-          <label>
-            OTP:
-            <input
-              type="text"
-              value={otp}
-              onChange={(e) => setOtp(e.target.value)}
-              placeholder="Enter OTP"
-              required
-            />
+          <label htmlFor="phoneNumber" className="form__label">
+            Enter your Phone Number
           </label>
-          <button onClick={handleVerifySubmit} id="verify-btn">
-            Verify OTP
-          </button>
-          <button onClick={handleResendOtp} id="resend-btn" className="resend-btn">
-            Resend OTP
-          </button>
-        </>
+        </div>
+      ) : (
+        <OtpInput
+          phoneNumber={phoneNumber}
+          onVerify={() => {
+            setMessage("");
+          }}
+        />
       )}
 
       <br />

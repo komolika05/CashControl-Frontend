@@ -1,28 +1,26 @@
-// src/App.js
 import React from "react";
-import Login from "./components/login";
 import "./App.css";
-import waveImage from "./assets/wave.svg";
-import illustration from "./assets/illustration.jpg";
-import cashControlIcon from "./assets/Cash.png";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import LoginLayout from "./loginLayout";
+import CreateAccount from "./components/createAccount";
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <LoginLayout/>,
+    },
+    {
+      path: "/create-account",
+      element: <CreateAccount/>
+    }
+  ]);
+
   return (
-    <div className="App">
-      <img src={cashControlIcon} className="cash-control-icon" alt="" />
-
-      <div className="form-container">
-        <Login />
-        <img
-          src={illustration}
-          className="illustration"
-          alt="Person with money"
-          width={600}
-        />
-      </div>
-
-      <img src={waveImage} className="wave-image" alt="" id="wave" />
-    </div>
+    <RouterProvider router={router} />
   );
 }
 
